@@ -1,0 +1,10 @@
+ipywidgets
+matplotlib
+numba
+numpy
+plotly
+requests
+scipy
+scikit-learn
+torch
+tqdm
