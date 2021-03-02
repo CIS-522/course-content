@@ -9,10 +9,24 @@ def get_fcnn_parameter_count() -> int:
     """
 
     fc_net = FullyConnectedNet()
-    fc_net_parameters = list(fc_net.parameters())
-    fc_shape = fc_net_parameters[0].shape
 
-    param_count = fc_shape[0] * fc_shape[1]
+    fc_net_parameters = fc_net.parameters()
+    param_count = 0
+    for layer in fc_net_parameters:
+        current_layer_params = None
+        for dimension in layer.shape:
+            if current_layer_params is None:
+                current_layer_params = dimension
+            else:
+                current_layer_params *= dimension
+        param_count += current_layer_params
+
+    # Alternatively, there's a convenient torch function to count the number of items in a tensor:
+    fc_net_parameters = fc_net.parameters()
+
+    param_count = 0
+    for layer in fc_net_parameters:
+        param_count += torch.numel(layer)
 
     return param_count
 
