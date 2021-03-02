@@ -1,7 +1,7 @@
 def get_cnn_parameter_count() -> int:
     """
     Calculate the number of parameters used by the convolutional network.
-    Hint: Casting the result of convnet.parameters() to a list will make it 
+    Hint: Casting the result of cnn_net.parameters() to a list may make it 
           easier to work with
 
     Returns:
@@ -10,9 +10,11 @@ def get_cnn_parameter_count() -> int:
 
     convnet = ConvNet()
     convnet_parameters = list(convnet.parameters())
-    conv_shape = convnet_parameters[0].shape
 
-    param_count = conv_shape[0] * conv_shape[1] * conv_shape[2] * conv_shape[3]
+    param_count = 0
+    for layer in convnet_parameters:
+        param_count += torch.numel(layer)
+
     return param_count
 
 print(get_cnn_parameter_count())
