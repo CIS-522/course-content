@@ -1,7 +1,7 @@
 def get_fcnn_parameter_count() -> int:
     """
     Calculate the number of parameters used by the fully connected network.
-    Hint: Casting the result of fc_net.parameters() to a list will make it 
+    Hint: Casting the result of fc_net.parameters() to a list may make it 
           easier to work with
 
     Returns:
